@@ -94,7 +94,7 @@ class OpticDiscDetector:
         recall = tp / (tp + fn)
         f1 = (2 * precision * recall) / (precision + recall)
 
-        return f1
+        return np.round(f1, 4)
 
 class FoveaDetector:
     def __init__(self, image_path, ground_truth_path, kernel):
@@ -195,4 +195,4 @@ class FoveaDetector:
         recall = tp / (tp + fn)
         f1 = (2 * precision * recall) / (precision + recall)
 
-        return f1
+        return np.round(f1, 4)
