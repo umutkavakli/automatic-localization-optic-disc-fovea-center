@@ -10,32 +10,50 @@ class OpticDiscDetector:
     def predict(self, kernel, threshold_start=250, contour_limit=2, output='out'):
         
         for i, path in enumerate(self.paths):
+            # read image
             image = cv2.imread(path)
+
+            # convert image into gray and apply historgram equalization
+            # since optic disc brighter, its value will be more close to channel limit (255)
             gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             equalized_image = cv2.equalizeHist(gray_image)
 
+            # start min threhsold and contour list for iteration
             contour_list = []
             min_threshold = threshold_start
 
+            # continue lowering min threshold and try to find contours
+            # until the number of contours reaches the limit
             while len(contour_list) < contour_limit:
+                # apply thresholding into equalized image 
                 _, thresholded_image = cv2.threshold(equalized_image, min_threshold, 255, cv2.THRESH_BINARY)
+                
+                # apply erosion to remove structural degradation
                 erosion = cv2.erode(thresholded_image, kernel, iterations=2)
 
+                # get contours
                 contours = cv2.findContours(erosion, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 contours = contours[0] if len(contours) == 2 else contours[1]
 
+                # calculate contour area to eliminate small ones
                 for c in contours:
                     area = cv2.contourArea(c)
                     if area > 5000:
                         heappush(contour_list, (-area, c))
-                
+
+                # lowering min threshold for next iteration
                 min_threshold -= 1
 
+            # apply segmentation to show optic disc
             image[erosion == 255] = [255, 255, 255]
+
+            # find center of fovea using contour and draw a circle
             center = cv2.moments(contour_list[0][1])
             centerX = int(center["m10"] / center["m00"])
             centerY = int(center["m01"] / center["m00"])
             cv2.circle(image, (centerX, centerY), 9, (0, 0, 255), -1)
+
+            # save image
             cv2.imwrite(f'{output}{i+1}.jpg', image)
 
 class FoveaDetector:
@@ -65,9 +83,6 @@ class FoveaDetector:
             # apply histogram equalization to make brighter area closer to the white
             equalized_image = cv2.equalizeHist(gray_image)
 
-            # apply erosion to remove structural degradation
-            erosion = cv2.erode(equalized_image, kernel, iterations=2)
-
             # start min threhsold and contour list for iteration
             min_threshold = threshold_start
             contour_list = []
@@ -76,12 +91,16 @@ class FoveaDetector:
             # until the number of contours reaches the limit
             while len(contour_list) < contour_limit:
                 # apply thresholding into equalized image 
-                _, thresholded_image = cv2.threshold(erosion, min_threshold, 255, cv2.THRESH_BINARY)
+                _, thresholded_image = cv2.threshold(equalized_image, min_threshold, 255, cv2.THRESH_BINARY)
+                
+                # apply erosion to remove structural degradation
+                erosion = cv2.erode(thresholded_image, kernel, iterations=2)
 
                 # get contours 
-                contours = cv2.findContours(thresholded_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                contours = cv2.findContours(erosion, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 contours = contours[0] if len(contours) == 2 else contours[1]
 
+                # calculate contour area to eliminate small ones
                 for c in contours:
                     area = cv2.contourArea(c)
                     if area > 200:
@@ -90,7 +109,7 @@ class FoveaDetector:
                 # lowering min threshold for next iteration
                 min_threshold =- 1
 
-            # find center of fovea using contour and raw a circle
+            # find center of fovea using contour and draw a circle
             center = cv2.moments(contour_list[0][1])
             center_x = int(center["m10"] / center["m00"])
             center_y = int(center["m01"] / center["m00"])
