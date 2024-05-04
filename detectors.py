@@ -1,7 +1,6 @@
 import os
 import cv2
 import numpy as np
-import pandas as pd
 from heapq import heappush
 
 class OpticDiscDetector:
@@ -54,17 +53,11 @@ class OpticDiscDetector:
         center_y = int(center["m01"] / center["m00"])
 
         return center_x, center_y, image
-    
-    def save_image(self, index, output):
-        pass
 
-    def save_all_images(self):
-        pass
 
 class FoveaDetector:
-    def __init__(self, image_path, ground_truth_path, kernel):
+    def __init__(self, image_path, kernel):
         self.paths = sorted(list(map(lambda x: os.path.join(image_path, x), os.listdir(image_path))))
-        self.ground_truths = pd.read_csv(ground_truth_path).iloc[:103, 1:3]
         self.kernel = kernel
 
     def predict(self, index, threshold_start=220, contour_limit=2, roi_radius=700):
