@@ -5,9 +5,8 @@ import pandas as pd
 from heapq import heappush
 
 class OpticDiscDetector:
-    def __init__(self, image_path, ground_truth_path, kernel):
+    def __init__(self, image_path, kernel):
         self.paths = sorted(list(map(lambda x: os.path.join(image_path, x), os.listdir(image_path))))
-        self.ground_truths = pd.read_csv(ground_truth_path).iloc[:103, 1:3]
         self.kernel = kernel
 
     def predict(self, index, threshold_start=250, contour_limit=2):
@@ -56,63 +55,11 @@ class OpticDiscDetector:
 
         return center_x, center_y, image
     
-    def mean_squared_error(self):
-        # get number of examples
-        m = len(self.ground_truths)
-        
-        # initialize error
-        error = 0  
+    def save_image(self, index, output):
+        pass
 
-        # loop over number of examples
-        for i in range(m):
-            # get x, y coordinate predictions and ground truths
-            x_pred, y_pred, _ = self.predict(i)
-            x_true, y_true = self.ground_truths.iloc[i]
-
-            error += (x_true - x_pred)**2 + (y_true - y_pred)**2
-        
-        return (error / m)
-    
-    def root_mean_squared_error(self):
-        # directly return root of mean squared error
-        return np.sqrt(self.mean_squared_error())
-
-    def f1_score(self, distance_limit=200):
-        """
-        F1 Score metric to calculate model performance.
-
-        Arguments:
-            distance_limit: maximum euclidean distance from ground truth to be accepted as true prediction.
-        Returns:
-            F1 score between ground truths and predictions 
-        """
-
-        # initialize true positive, false positive and false negative (no need true negative)
-        tp, fp, fn = 0, 0, 0
-
-        # loop over number of examples
-        for i in range(len(self.ground_truths)):
-            # get x, y coordinate predictions and ground truths (do not use image output from prediction)
-            x_pred, y_pred, _ = self.predict(i)
-            x_true, y_true = self.ground_truths.iloc[i]
-
-            # calculate euclidean distance
-            distance = np.sqrt((x_true - x_pred)**2 + (y_true - y_pred)**2)
-
-            # if distance is less than distance limit, then it is correct (close to correct point)
-            # else false and increase both fp and fn because they represent the same thing
-            if distance <= distance_limit:
-                tp += 1
-            else:
-                fp += 1
-                fn += 1
-
-        # calculate precision and recall, then f1 score
-        precision = tp / (tp + fp)
-        recall = tp / (tp + fn)
-        f1 = (2 * precision * recall) / (precision + recall)
-
-        return np.round(f1, 4)
+    def save_all_images(self):
+        pass
 
 class FoveaDetector:
     def __init__(self, image_path, ground_truth_path, kernel):
@@ -173,63 +120,4 @@ class FoveaDetector:
         center_x = int(center["m10"] / center["m00"])
         center_y = int(center["m01"] / center["m00"])
 
-        return center_x, center_y
-
-    def mean_squared_error(self):
-        # get number of examples
-        m = len(self.ground_truths)
-        
-        # initialize error
-        error = 0  
-
-        # loop over number of examples
-        for i in range(m):
-            # get x, y coordinate predictions and ground truths
-            x_pred, y_pred = self.predict(i)
-            x_true, y_true = self.ground_truths.iloc[i]
-
-            error += (x_true - x_pred)**2 + (y_true - y_pred)**2
-        
-        return (error / m)
-    
-    def root_mean_squared_error(self):
-        # directly return root of mean squared error
-        return np.sqrt(self.mean_squared_error())
-
-
-    def f1_score(self, distance_limit=200):
-        """
-        F1 Score metric to calculate model performance.
-
-        Arguments:
-            distance_limit: maximum euclidean distance from ground truth to be accepted as true prediction.
-        Returns:
-            F1 score between ground truths and predictions 
-        """
-
-        # initialize true positive, false positive and false negative (no need true negative)
-        tp, fp, fn = 0, 0, 0
-
-        # loop over number of examples
-        for i in range(len(self.ground_truths)):
-            # get x, y coordinate predictions and ground truths
-            x_pred, y_pred = self.predict(i)
-            x_true, y_true = self.ground_truths.iloc[i]
-
-            # calculate euclidean distance
-            distance = np.sqrt((x_true - x_pred)**2 + (y_true - y_pred)**2)
-
-            # if distance is less than distance limit, then it is correct (close to correct point)
-            # else false and increase both fp and fn because they represent the same thing
-            if distance <= distance_limit:
-                tp += 1
-            else:
-                fp += 1
-                fn += 1
-
-        # calculate precision and recall, then f1 score
-        precision = tp / (tp + fp)
-        recall = tp / (tp + fn)
-        f1 = (2 * precision * recall) / (precision + recall)
-
-        return np.round(f1, 4)
+        return center_x, center_y, image
