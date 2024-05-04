@@ -7,8 +7,11 @@ class OpticDiscDetector:
     def __init__(self, image_path, kernel):
         self.paths = sorted(list(map(lambda x: os.path.join(image_path, x), os.listdir(image_path))))
         self.kernel = kernel
+    
+    def __len__(self):
+        return len(self.paths)
 
-    def predict(self, index, threshold_start=250, contour_limit=2):
+    def predict(self, index, threshold_start=250, contour_limit=2, return_mask=False):
         
         # read image
         image = cv2.imread(self.paths[index])
@@ -44,8 +47,9 @@ class OpticDiscDetector:
             # lowering min threshold for next iteration
             min_threshold -= 1
 
-        # apply segmentation to show optic disc
-        image[erosion == 255] = [255, 255, 255]
+        # apply segmentation to show optic disc if return mask is true
+        if return_mask:
+            image[erosion == 255] = [255, 255, 255]
 
         # find center of fovea using contour and draw a circle
         center = cv2.moments(contour_list[0][1])
@@ -59,6 +63,9 @@ class FoveaDetector:
     def __init__(self, image_path, kernel):
         self.paths = sorted(list(map(lambda x: os.path.join(image_path, x), os.listdir(image_path))))
         self.kernel = kernel
+
+    def __len__(self):
+        return len(self.paths)
 
     def predict(self, index, threshold_start=220, contour_limit=2, roi_radius=700):
         
