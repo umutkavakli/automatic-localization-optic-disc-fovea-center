@@ -12,6 +12,19 @@ class OpticDiscDetector:
         return len(self.paths)
 
     def predict(self, index, threshold_start=250, contour_limit=2, return_mask=False):
+        """
+        Predicts center x, y location and segmentation of corresponding optic disc image.
+
+        Arguments:
+            index: One of the index value for total samples. 
+            threshold_start: Initial threshold value to specify minimum threshold.
+            contour_limit: Number of contours needed to select one of them as a optic disc.
+            return_mask: If it true, it applies segmentation to image to show optic disc area.
+        Returns:
+            center_x: Horizontal location of center of optic disc.
+            center_y: Vertical location of center of optic disc.
+            image: Original or segmented optic disc image. 
+        """
         
         # read image
         image = cv2.imread(self.paths[index])
@@ -68,6 +81,19 @@ class FoveaDetector:
         return len(self.paths)
 
     def predict(self, index, threshold_start=220, contour_limit=2, roi_radius=700):
+        """
+        Predicts center x, y location of corresponding fovea image.
+
+        Arguments:
+            index: One of the index value for total samples. 
+            threshold_start: Initial threshold value to specify minimum threshold.
+            contour_limit: Number of contours needed to select one of them as a optic disc.
+            roi_threshold: Circle radius to specify region of interest since fovea is around the middle of image.
+        Returns:
+            center_x: Horizontal location of center of optic disc.
+            center_y: Vertical location of center of optic disc.
+            image: Original fovea image. 
+        """
         
         # read image    
         image = cv2.imread(self.paths[index])
