@@ -57,7 +57,25 @@ class OpticDiscDetector:
         return center_x, center_y, image
     
     def mean_squared_error(self):
-        pass
+        # get number of examples
+        m = len(self.ground_truths)
+        
+        # initialize error
+        error = 0  
+
+        # loop over number of examples
+        for i in range(m):
+            # get x, y coordinate predictions and ground truths
+            x_pred, y_pred, _ = self.predict(i)
+            x_true, y_true = self.ground_truths.iloc[i]
+
+            error += (x_true - x_pred)**2 + (y_true - y_pred)**2
+        
+        return (error / m)
+    
+    def root_mean_squared_error(self):
+        # directly return root of mean squared error
+        return np.sqrt(self.mean_squared_error())
 
     def f1_score(self, distance_limit=200):
         """
@@ -158,7 +176,26 @@ class FoveaDetector:
         return center_x, center_y
 
     def mean_squared_error(self):
-        pass
+        # get number of examples
+        m = len(self.ground_truths)
+        
+        # initialize error
+        error = 0  
+
+        # loop over number of examples
+        for i in range(m):
+            # get x, y coordinate predictions and ground truths
+            x_pred, y_pred = self.predict(i)
+            x_true, y_true = self.ground_truths.iloc[i]
+
+            error += (x_true - x_pred)**2 + (y_true - y_pred)**2
+        
+        return (error / m)
+    
+    def root_mean_squared_error(self):
+        # directly return root of mean squared error
+        return np.sqrt(self.mean_squared_error())
+
 
     def f1_score(self, distance_limit=200):
         """
