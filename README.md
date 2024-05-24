@@ -10,16 +10,10 @@ Indian Diabetic Retinopathy Image Dataset (<b>[IDRID](https://idrid.grand-challe
 
 The images of this dataset have a resolution of <b>4288×2848</b> pixels and are stored in JPG file format. Moreover, the dataset covers three distinct subsets of problems: Localization, Segmentation and Disease Grading. I only focused on localization and segmentation problems for this study. 
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
-        <img src=".examples/image2.jpg" alt="Image 1" style="width:45%;">
-        <p> <b>a)</b> Ground Truth of Fovea Localization</p>
-    </div>
-    <div style="text-align: center;">
-        <img src=".examples/image3.jpg" alt="Image 2" style="width:45%;">
-        <p> <b>b)</b> Ground Truth of Optic Disc Localization</p>
-    </div>
-</div>
+a) Ground Truth of Fovea Localization          |  b) Ground Truth of Optic Disc Localization
+:-------------------------:|:-------------------------:
+![](.examples/image2.jpg)  |  ![](.examples/image3.jpg)
+
 
 ## 2) Processing Steps
 <b>Localization</b> subset contains <b>413</b> sample images for training and <b>103</b> sample images for testing by including the center location of both the optic disc and fovea in CSV file format. Since this study does not address model training, I only used the test subset. 
@@ -31,27 +25,15 @@ As an approach, I realized that the brightest parts of the images are mostly the
 
 Since the brightest parts are closer to the white value (255), I applied binary thresholding with a predefined value of 250. In this step, I iterate this process by lowering the threshold value until finding an object of sufficient area size. Sometimes small regions exceed the threshold and create noise in the segmentation, which I prevented by applying an erosion operation. This algorithm also uses a heap (priority queue) data structure to store the biggest objects because optic discs have a huge space in the images.
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
-        <img src=".examples/image10.jpg" alt="Image 1" style="width:45%;">
-        <p> <b>a)</b> Input Image</p>
-    </div>
-    <div style="text-align: center;">
-        <img src=".examples/image11.jpg" alt="Image 2" style="width:45%;">
-        <p> <b>b)</b> Grayscale Image</p>
-    </div>
-</div>
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
-        <img src=".examples/image12.jpg" alt="Image 1" style="width:45%;">
-        <p> <b>c)</b> Histogram Eqaulized Image</p>
-    </div>
-    <div style="text-align: center;">
-        <img src=".examples/image13.jpg" alt="Image 2" style="width:45%;">
-        <p> <b>d)</b> Thresholded Image</p>
-    </div>
-</div>
+a) Input Image         |  b) Grayscale Image
+:-------------------------:|:-------------------------:
+![](.examples/image10.jpg)  |  ![](.examples/image11.jpg)
+
+c) Histogram Eqaulized Image        |  d) Thresholded Image
+:-------------------------:|:-------------------------:
+![](.examples/image12.jpg)  |  ![](.examples/image13.jpg)
+
 
 ### 2.2) Fovea Localization
 
@@ -61,35 +43,15 @@ Both optic disc and fovea detection require similar processing steps to achieve 
 
 After analyzing images,  the fovea is always close to the center of the fundus. For this reason, I applied a circle masking operation to extract the middle part of the image as a region of interest with a predefined radius value. Since the image is in RGB color space, I transformed it into a grayscale and applied histogram equalization to sharpen the brightness of the fovea. The remaining manipulations are the same as the optic disc detection algorithm: thresholding, erosion, storing the largest contours in a heap and finding the center of the area
 
-<div style="display: flex; justify-content: space-between;">
-    <span style="text-align: center;">
-        <img src=".examples/image4.jpg" alt="Image 1" style="width:30%;">
-        <p> <b>a)</b> Input Image</p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image5.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>b)</b> Negative Image</p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image6.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>c)</b> Grayscale Masked Image</p>
-    </span>
-</div>
 
-<div style="display: flex; justify-content: space-between;">
-    <span style="text-align: center;">
-        <img src=".examples/image7.jpg" alt="Image 1" style="width:30%;">
-        <p> <b>d)</b> Histogram Eqaulized Image</p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image8.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>e)</b> Thresholded Image</p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image9.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>f)</b> Erosion Applied Image </p>
-    </span>
-</div>
+a) Input Image         |  b) Grayscale Image         | c)  Grayscale Masked Image
+:-------------------------:|:-------------------------:|:-------------------------:
+![](.examples/image4.jpg)  |  ![](.examples/image5.jpg) | ![](.examples/image6.jpg) 
+
+d) istogram Eqaulized Image       |  e) Thresholded Image        | f) Erosion Applied Image
+:-------------------------:|:-------------------------:|:-------------------------:
+![](.examples/image7.jpg)  |  ![](.examples/image8.jpg) | ![](.examples/image9.jpg) 
+
 
 
 ## 3) Experiments and Results
@@ -104,180 +66,79 @@ subjects to test their performance to set a threshold for our image
 processing pipeline. </li>
 </ul>
 
-<div style="display: flex; justify-content: space-between;">
-    <span style="text-align: center;">
-        <img src=".examples/image14.jpg" alt="Image 1" style="width:45%;">
-        <p> <b>a)</b> Easy Example </p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image15.jpg" alt="Image 2" style="width:45%;">
-        <p> <b>b)</b> Hard Example</p>
-    </span>
-</div>
+a) Easy Example          |  b) Hard Example
+:-------------------------:|:-------------------------:
+![](.examples/image14.jpg)  |  ![](.examples/image15.jpg)
+
 
 ### 3.2) Results of Fovea Localization in F1 Score
 
 I have used F1 score for our metrics but this metric is designed for classification problem. Therefore, I made some adjustments to use it for my problems. I add a distance factor <b>d</b> to accept prediction true if the model find a coordinate which is equal or smaller than this factor. I have used this factor for both fovea and optic disc localization.
  
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-    <table style="border-collapse: collapse; width: 100%; max-width: 800px; text-align: center;">
-        <thead>
-            <tr>
-                <th style="border: 1px solid #dddddd; padding: 8px;">Model</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 100</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 200</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 300</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 400</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 500</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Human</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">79.61%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">81.52%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">90.61%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">95.47%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">100%</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Ours</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">53.46%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">77.67%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">86.41%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">87.38%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">93.20%</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<center>
+
+| Model |d = 100 |d = 200 |d = 300 |d = 400 |d = 500 |
+|-------|:------:|-------:|-------:|-------:|-------:|
+| Human | 79.61% | 81.52% | 90.61% | 95.47% | 100%   |
+| Ours  | 53.46% | 77.67% | 86.41% | 87.38% | 93.20% | 
+
+
+</center>
+
 
 ### 3.3) Results of Optic Disc Localization in F1 Score
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-    <table style="border-collapse: collapse; width: 100%; max-width: 800px; text-align: center;">
-        <thead>
-            <tr>
-                <th style="border: 1px solid #dddddd; padding: 8px;">Model</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 100</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 150</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 200</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 250</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">d = 300</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Ours</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">75.73%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">94.17%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">96.12%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">96.12%</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">97.09%</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<center>
+
+| Model |d = 100 |d = 150 |d = 200 |d = 250 |d = 300 |
+|-------|:------:|-------:|-------:|-------:|-------:|
+| Ours  | 75.73% | 94.17% |	96.12% | 96.12% | 97.09% | 
+
+
+</center>
+
 
 ### 3.4) Results of Optic Disc Segmentation in Dice Score
 
 As I mentioned, I have used U-Net image segmentation algortithm to compare the performances of my model and a well-known deep learning model. I have used 54 training samples from dataset to train the U-Net model and 27 testing samples to measure the performance in dice score. You can see the hyperparameters I have used for U-Net algorithm: 
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-    <table style="border-collapse: collapse; width: 100%; max-width: 800px; text-align: center;">
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Input Size</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">512x256</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Learning Rate</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">10^-3</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Loss Function</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Binary Cross-Entropy</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Optimizer</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Adam</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Batch Size</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">6</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;"><strong>Epochs</strong></td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">150</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<center>
+
+| Hyperparameter | Value |
+|-------|:------:|
+| Input Size  |512x256 | 
+| Learning Rate  | 10^-3 | 
+| Loss Function  | Binary Cross-Entropy | 
+| Optimizer  | Adam | 
+| Batch Size  | 6 | 
+| Epochs  | 150 | 
+
+
+</center>
 
 <br>
 <br>
 
 In the table below, I show overall performance for my image processing model and the U-Net algorithm. Since my model is not trained with any image, its preliminary results are promising.
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-    <table style="border-collapse: collapse; width: 100%; max-width: 800px; text-align: center;">
-        <thead>
-            <tr>
-                <th style="border: 1px solid #dddddd; padding: 8px;">Model</th>
-                <th style="border: 1px solid #dddddd; padding: 8px;">Dice Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;">U-Net</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">85.86%</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #dddddd; padding: 8px;">Ours</td>
-                <td style="border: 1px solid #dddddd; padding: 8px;">72.55%</td>
-            </tr>
-        </tbody>        
-    </table>
-</div>
+<center>
+
+| Model | Dice Score |
+|-------|:------:|
+| U-Net  | 85.86%|
+| Ours  | 72.55%|
+
+</center>
+
 
 <br>
 <br>
 
-<div style="display: flex; justify-content: space-between;">
-    <span style="text-align: center;">
-        <img src=".examples/image16.jpg" alt="Image 1" style="width:30%;">
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image17.jpg" alt="Image 2" style="width:30%;">
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image18.jpg" alt="Image 2" style="width:30%;">
-    </span>
-</div>
+ Ours - 1       |  U-Net - 1       | Ground Truth - 1 
+:-------------------------:|:-------------------------:|:-------------------------:
+![](.examples/image16.jpg)  |  ![](.examples/image17.jpg) | ![](.examples/image18.jpg) 
 
-<div style="display: flex; justify-content: space-between;">
-    <span style="text-align: center;">
-        <img src=".examples/image19.jpg" alt="Image 1" style="width:30%;">
-        <p><b>Ours</b></p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image20.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>U-Net</b></p>
-    </span>
-    <span style="text-align: center;">
-        <img src=".examples/image21.jpg" alt="Image 2" style="width:30%;">
-        <p> <b>Ground Truth</b> </p>
-    </span>
-</div>
+Ours - 2     | U-Net - 2       | Ground Truth - 2 
+:-------------------------:|:-------------------------:|:-------------------------:
+![](.examples/image19.jpg)  |  ![](.examples/image20.jpg) | ![](.examples/image21.jpg) 
+
