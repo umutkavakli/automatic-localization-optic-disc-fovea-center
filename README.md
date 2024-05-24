@@ -48,7 +48,7 @@ a) Input Image         |  b) Grayscale Image         | c)  Grayscale Masked Imag
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](.examples/image4.jpg)  |  ![](.examples/image5.jpg) | ![](.examples/image6.jpg) 
 
-d) istogram Eqaulized Image       |  e) Thresholded Image        | f) Erosion Applied Image
+d) Histogram Eqaulized Image       |  e) Thresholded Image        | f) Erosion Applied Image
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](.examples/image7.jpg)  |  ![](.examples/image8.jpg) | ![](.examples/image9.jpg) 
 
