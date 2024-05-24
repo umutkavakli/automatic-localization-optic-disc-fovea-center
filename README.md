@@ -257,27 +257,27 @@ In the table below, I show overall performance for my image processing model and
 
 <div style="display: flex; justify-content: space-between;">
     <span style="text-align: center;">
-        <img src=".examples/image16.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image16.jpg" alt="Image 1" style="width:30%;">
     </span>
     <span style="text-align: center;">
-        <img src=".examples/image17.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image17.jpg" alt="Image 2" style="width:30%;">
     </span>
     <span style="text-align: center;">
-        <img src=".examples/image18.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image18.jpg" alt="Image 2" style="width:30%;">
     </span>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
     <span style="text-align: center;">
-        <img src=".examples/image19.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image19.jpg" alt="Image 1" style="width:30%;">
         <p><b>Ours</b></p>
     </span>
     <span style="text-align: center;">
-        <img src=".examples/image20.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image20.jpg" alt="Image 2" style="width:30%;">
         <p> <b>U-Net</b></p>
     </span>
     <span style="text-align: center;">
-        <img src=".examples/image21.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image21.jpg" alt="Image 2" style="width:30%;">
         <p> <b>Ground Truth</b> </p>
     </span>
 </div>
