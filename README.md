@@ -6,17 +6,17 @@ This project aims to detect the center of optic disc and fovea using only image 
 
 Indian Diabetic Retinopathy Image Dataset (<b>[IDRID](https://idrid.grand-challenge.org/Home/)</b>) is used for this project.
 
-<p align="center"><img src="examples/image1.jpg" width="70%"></p>
+<p align="center"><img src=".examples/image1.jpg" width="70%"></p>
 
 The images of this dataset have a resolution of <b>4288×2848</b> pixels and are stored in JPG file format. Moreover, the dataset covers three distinct subsets of problems: Localization, Segmentation and Disease Grading. I only focused on localization and segmentation problems for this study. 
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image2.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image2.jpg" alt="Image 1" style="width:95%;">
         <p> <b>a)</b> Ground Truth of Fovea Localization</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image3.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image3.jpg" alt="Image 2" style="width:95%;">
         <p> <b>b)</b> Ground Truth of Optic Disc Localization</p>
     </div>
 </div>
@@ -33,22 +33,22 @@ Since the brightest parts are closer to the white value (255), I applied binary 
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image10.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image10.jpg" alt="Image 1" style="width:95%;">
         <p> <b>a)</b> Input Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image11.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image11.jpg" alt="Image 2" style="width:95%;">
         <p> <b>b)</b> Grayscale Image</p>
     </div>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image12.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image12.jpg" alt="Image 1" style="width:95%;">
         <p> <b>c)</b> Histogram Eqaulized Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image13.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image13.jpg" alt="Image 2" style="width:95%;">
         <p> <b>d)</b> Thresholded Image</p>
     </div>
 </div>
@@ -63,30 +63,30 @@ After analyzing images,  the fovea is always close to the center of the fundus. 
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image4.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image4.jpg" alt="Image 1" style="width:95%;">
         <p> <b>a)</b> Input Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image5.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image5.jpg" alt="Image 2" style="width:95%;">
         <p> <b>b)</b> Negative Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image6.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image6.jpg" alt="Image 2" style="width:95%;">
         <p> <b>c)</b> Grayscale Masked Image</p>
     </div>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image7.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image7.jpg" alt="Image 1" style="width:95%;">
         <p> <b>d)</b> Histogram Eqaulized Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image8.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image8.jpg" alt="Image 2" style="width:95%;">
         <p> <b>e)</b> Thresholded Image</p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image9.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image9.jpg" alt="Image 2" style="width:95%;">
         <p> <b>f)</b> Erosion Applied Image </p>
     </div>
 </div>
@@ -106,11 +106,11 @@ processing pipeline. </li>
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image14.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image14.jpg" alt="Image 1" style="width:95%;">
         <p> <b>a)</b> Easy Example </p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image15.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image15.jpg" alt="Image 2" style="width:95%;">
         <p> <b>b)</b> Hard Example</p>
     </div>
 </div>
@@ -257,27 +257,27 @@ In the table below, I show overall performance for my image processing model and
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image16.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image16.jpg" alt="Image 1" style="width:95%;">
     </div>
     <div style="text-align: center;">
-        <img src="examples/image17.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image17.jpg" alt="Image 2" style="width:95%;">
     </div>
     <div style="text-align: center;">
-        <img src="examples/image18.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image18.jpg" alt="Image 2" style="width:95%;">
     </div>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center;">
-        <img src="examples/image19.jpg" alt="Image 1" style="width:95%;">
+        <img src=".examples/image19.jpg" alt="Image 1" style="width:95%;">
         <p><b>Ours</b></p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image20.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image20.jpg" alt="Image 2" style="width:95%;">
         <p> <b>U-Net</b></p>
     </div>
     <div style="text-align: center;">
-        <img src="examples/image21.jpg" alt="Image 2" style="width:95%;">
+        <img src=".examples/image21.jpg" alt="Image 2" style="width:95%;">
         <p> <b>Ground Truth</b> </p>
     </div>
 </div>
