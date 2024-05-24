@@ -75,7 +75,7 @@ a) Easy Example          |  b) Hard Example
 
 I have used F1 score for our metrics but this metric is designed for classification problem. Therefore, I made some adjustments to use it for my problems. I add a distance factor <b>d</b> to accept prediction true if the model find a coordinate which is equal or smaller than this factor. I have used this factor for both fovea and optic disc localization.
  
-<center>
+<div align="center">
 
 | Model |d = 100 |d = 200 |d = 300 |d = 400 |d = 500 |
 |-------|:------:|-------:|-------:|-------:|-------:|
@@ -83,26 +83,26 @@ I have used F1 score for our metrics but this metric is designed for classificat
 | Ours  | 53.46% | 77.67% | 86.41% | 87.38% | 93.20% | 
 
 
-</center>
+</div>
 
 
 ### 3.3) Results of Optic Disc Localization in F1 Score
 
-<center>
+<div align="center">
 
 | Model |d = 100 |d = 150 |d = 200 |d = 250 |d = 300 |
 |-------|:------:|-------:|-------:|-------:|-------:|
 | Ours  | 75.73% | 94.17% |	96.12% | 96.12% | 97.09% | 
 
 
-</center>
+</div>
 
 
 ### 3.4) Results of Optic Disc Segmentation in Dice Score
 
 As I mentioned, I have used U-Net image segmentation algortithm to compare the performances of my model and a well-known deep learning model. I have used 54 training samples from dataset to train the U-Net model and 27 testing samples to measure the performance in dice score. You can see the hyperparameters I have used for U-Net algorithm: 
 
-<center>
+<div align="center">
 
 | Hyperparameter | Value |
 |-------|:------:|
@@ -114,22 +114,21 @@ As I mentioned, I have used U-Net image segmentation algortithm to compare the p
 | Epochs  | 150 | 
 
 
-</center>
+</div>
 
 <br>
 <br>
 
 In the table below, I show overall performance for my image processing model and the U-Net algorithm. Since my model is not trained with any image, its preliminary results are promising.
 
-<center>
+<div align="center">
 
 | Model | Dice Score |
 |-------|:------:|
 | U-Net  | 85.86%|
 | Ours  | 72.55%|
 
-</center>
-
+</div>
 
 <br>
 <br>
