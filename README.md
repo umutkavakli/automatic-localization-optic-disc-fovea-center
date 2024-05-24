@@ -62,33 +62,33 @@ Both optic disc and fovea detection require similar processing steps to achieve 
 After analyzing images,  the fovea is always close to the center of the fundus. For this reason, I applied a circle masking operation to extract the middle part of the image as a region of interest with a predefined radius value. Since the image is in RGB color space, I transformed it into a grayscale and applied histogram equalization to sharpen the brightness of the fovea. The remaining manipulations are the same as the optic disc detection algorithm: thresholding, erosion, storing the largest contours in a heap and finding the center of the area
 
 <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
+    <span style="text-align: center;">
         <img src=".examples/image4.jpg" alt="Image 1" style="width:30%;">
         <p> <b>a)</b> Input Image</p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image5.jpg" alt="Image 2" style="width:30%;">
         <p> <b>b)</b> Negative Image</p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image6.jpg" alt="Image 2" style="width:30%;">
         <p> <b>c)</b> Grayscale Masked Image</p>
-    </div>
+    </span>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
+    <span style="text-align: center;">
         <img src=".examples/image7.jpg" alt="Image 1" style="width:30%;">
         <p> <b>d)</b> Histogram Eqaulized Image</p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image8.jpg" alt="Image 2" style="width:30%;">
         <p> <b>e)</b> Thresholded Image</p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image9.jpg" alt="Image 2" style="width:30%;">
         <p> <b>f)</b> Erosion Applied Image </p>
-    </div>
+    </span>
 </div>
 
 
@@ -105,14 +105,14 @@ processing pipeline. </li>
 </ul>
 
 <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
+    <span style="text-align: center;">
         <img src=".examples/image14.jpg" alt="Image 1" style="width:45%;">
         <p> <b>a)</b> Easy Example </p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image15.jpg" alt="Image 2" style="width:45%;">
         <p> <b>b)</b> Hard Example</p>
-    </div>
+    </span>
 </div>
 
 ### 3.2) Results of Fovea Localization in F1 Score
@@ -256,28 +256,28 @@ In the table below, I show overall performance for my image processing model and
 <br>
 
 <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
+    <span style="text-align: center;">
         <img src=".examples/image16.jpg" alt="Image 1" style="width:95%;">
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image17.jpg" alt="Image 2" style="width:95%;">
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image18.jpg" alt="Image 2" style="width:95%;">
-    </div>
+    </span>
 </div>
 
 <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center;">
+    <span style="text-align: center;">
         <img src=".examples/image19.jpg" alt="Image 1" style="width:95%;">
         <p><b>Ours</b></p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image20.jpg" alt="Image 2" style="width:95%;">
         <p> <b>U-Net</b></p>
-    </div>
-    <div style="text-align: center;">
+    </span>
+    <span style="text-align: center;">
         <img src=".examples/image21.jpg" alt="Image 2" style="width:95%;">
         <p> <b>Ground Truth</b> </p>
-    </div>
+    </span>
 </div>
