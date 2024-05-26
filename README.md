@@ -44,7 +44,7 @@ Both optic disc and fovea detection require similar processing steps to achieve 
 After analyzing images,  the fovea is always close to the center of the fundus. For this reason, I applied a circle masking operation to extract the middle part of the image as a region of interest with a predefined radius value. Since the image is in RGB color space, I transformed it into a grayscale and applied histogram equalization to sharpen the brightness of the fovea. The remaining manipulations are the same as the optic disc detection algorithm: thresholding, erosion, storing the largest contours in a heap and finding the center of the area.
 
 
-a) Input Image         |  b) Grayscale Image         | c)  Grayscale Masked Image
+a) Input Image         |  b) Negative Image         | c)  Grayscale Masked Image
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](.examples/image4.jpg)  |  ![](.examples/image5.jpg) | ![](.examples/image6.jpg) 
 

@@ -64,12 +64,12 @@ class OpticDiscDetector:
         if return_mask:
             image[erosion == 255] = [255, 255, 255]
 
-        # find center of fovea using contour and draw a circle
+        # find center of optic disc using contour and draw a circle
         center = cv2.moments(contour_list[0][1])
         center_x = int(center["m10"] / center["m00"])
         center_y = int(center["m01"] / center["m00"])
 
-        return center_x, center_y, image
+        return center_x, center_y, erosion
 
 
 class FoveaDetector:
