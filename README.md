@@ -73,7 +73,7 @@ a) Easy Example          |  b) Hard Example
 
 ### 3.2) Results of Fovea Localization in F1 Score
 
-I have used F1 score for our metrics but this metric is designed for classification problem. Therefore, I made some adjustments to use it for my problems. I add a distance factor <b>d</b> to accept prediction true if the model find a coordinate which is equal or smaller than this factor. I have used this factor for both fovea and optic disc localization.
+I have used F1 score for our metrics but this metric is designed for classification problem. Therefore, I made some adjustments to use it for my problems. I added a distance factor <b>d</b> to accept prediction true if the model find a coordinate which is equal or smaller than this factor. I have used this factor for both fovea and optic disc localization.
  
 <div align="center">
 
@@ -133,11 +133,11 @@ In the table below, I show overall performance for my image processing model and
 <br>
 <br>
 
- Ours - 1       |  U-Net - 1       | Ground Truth - 1 
+ Ours      |  U-Net      | Ground Truth
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](.examples/image16.jpg)  |  ![](.examples/image17.jpg) | ![](.examples/image18.jpg) 
 
-Ours - 2     | U-Net - 2       | Ground Truth - 2 
+Ours    | U-Net       | Ground Truth
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](.examples/image19.jpg)  |  ![](.examples/image20.jpg) | ![](.examples/image21.jpg) 
 
