@@ -30,7 +30,7 @@ a) Input Image         |  b) Grayscale Image
 :-------------------------:|:-------------------------:
 ![](.examples/image10.jpg)  |  ![](.examples/image11.jpg)
 
-c) Histogram Eqaulized Image        |  d) Thresholded Image
+c) Histogram Equalized Image        |  d) Thresholded Image
 :-------------------------:|:-------------------------:
 ![](.examples/image12.jpg)  |  ![](.examples/image13.jpg)
 
